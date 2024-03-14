@@ -1,0 +1,7 @@
+fastapi==0.68.2
+uvicorn==0.15.0
+redis==4.0.2
+aioredis==2.0.0
+pydantic==1.9.0
+SQLAlchemy==1.4.32
+mysql-connector-python==8.0.28

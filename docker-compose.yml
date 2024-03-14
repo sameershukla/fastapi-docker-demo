@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      REDIS_HOST: redis_db
+      REDIS_PORT: 6379
+      MYSQL_HOST: mysql_db
+      MYSQL_PORT: 3306
+    depends_on:
+      - redis_db
+      - mysql_db
+  redis_db:
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+  mysql_db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+
+volumes:
+  redis-data:  # Optional volume for Redis data persistence
+  mysql-data:  # Optional volume for MySQL data persistence
