@@ -5,7 +5,9 @@ docker-compose up --scale <svc_name> = 3
 
 # Deploy to gcr.io
 docker build -t fastapi-docker --platform linux/amd64 .
+
 docker tag fastapi-docker gcr.io/<project_name>/fastapi-docker:latest
+
 docker push gcr.io/<project_name>/fastapi-docker:latest
 
 # Docker viz
@@ -14,9 +16,11 @@ docker run --rm -it --name dcv -v $(pwd):/input pmsipilot/docker-compose-viz ren
 # Docker Compose
 Docker Compose is a tool provided by Docker that allows you to define and run multi-container Docker applications. It uses YAML configuration files to define the services, networks, and volumes required for your application, making it easy to manage complex containerized applications with multiple interconnected components.
 Docker Compose allows you to define your application's services, dependencies, and configurations in a single YAML file called `docker-compose.yml`. Each service in the file represents a containerized component of your application, such as a web server, database, or caching layer.
+
 With Docker Compose, you can start, stop, and manage multiple containers as a single application stack using simple commands like `docker-compose up`, `docker-compose down`, `docker-compose start`, and `docker-compose stop`. This simplifies the process of managing complex containerized applications with multiple interconnected
 Docker Compose automatically manages dependencies between services and ensures that they are started and stopped in the correct order. For example, if your application depends on a database service, Docker Compose will start the database service first before starting the application service.
 Docker Compose automatically creates a default network for your application, allowing containers to communicate with each other using service names as hostnames. You can also define custom networks to isolate and control the communication between services.
+
 We can also have multiple docker-compose files 
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up
 
